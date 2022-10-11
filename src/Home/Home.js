@@ -23,8 +23,8 @@ export default function Home() {
       cookies.bookMarkedMaps &&
       setMaps({
         user: id,
-        addedMaps: [...cookies.addedMaps.split('&')],
-        bookMarkedMaps: [...cookies.bookMarkedMaps.split('&')],
+        addedMaps: [...cookies[`${id}addedMaps`].split('&')],
+        bookMarkedMaps: [...cookies[`${id}bookMarkedMaps`].split('&')],
       });
   }, [id]);
 
@@ -32,11 +32,11 @@ export default function Home() {
     let c1 = currmaps && currmaps.addedMaps && currmaps.addedMaps.join('&');
     let c2 =
       currmaps && currmaps.bookMarkedMaps && currmaps.bookMarkedMaps.join('&');
-    setCookie('addedMaps', c1, {
-      path: `/${maps.user}`,
+    setCookie(`${id}addedMaps`, c1, {
+      path: `/`,
     });
-    setCookie('bookMarkedMaps', c2, {
-      path: `/${maps.user}`,
+    setCookie(`${id}bookMarkedMaps`, c2, {
+      path: `/`,
     });
   };
 
