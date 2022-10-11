@@ -3,19 +3,30 @@ import { getRestaurantsData } from '../Services';
 import AutoCompleteInput from '../AutoComplete';
 import { MapContext } from '../Store';
 import { useCookies } from 'react-cookie';
-
+import { useParams } from 'react-router-dom';
 export default function Home() {
   const [restaurant, setRestaurant] = useState('');
   const [maps, setMaps] = useContext(MapContext);
   const [cookies, setCookie] = useCookies([`${maps.user}`]);
+  const { id } = useParams();
+
   useEffect(() => {
+    console.log(id);
+    id &&
+      setMaps({
+        user: id,
+        addedMaps: maps.addedMaps,
+        bookMarkedMaps: maps.bookMarkedMaps,
+      });
+
     cookies.addedMaps &&
       cookies.bookMarkedMaps &&
       setMaps({
+        user: id,
         addedMaps: [...cookies.addedMaps.split('&')],
         bookMarkedMaps: [...cookies.bookMarkedMaps.split('&')],
       });
-  }, []);
+  }, [id]);
 
   const cookieHandler = (currmaps) => {
     let c1 = currmaps && currmaps.addedMaps && currmaps.addedMaps.join('&');
@@ -38,11 +49,13 @@ export default function Home() {
         }
       });
     setMaps({
+      user: maps.user,
       addedMaps: [...temp],
       bookMarkedMaps: [...maps.bookMarkedMaps, value],
     });
 
     cookieHandler({
+      user: maps.user,
       addedMaps: [...temp],
       bookMarkedMaps: [...maps.bookMarkedMaps, value],
     });
@@ -56,8 +69,13 @@ export default function Home() {
           return rest;
         }
       });
-    setMaps({ bookMarkedMaps: [...maps.bookMarkedMaps], addedMaps: [...temp] });
+    setMaps({
+      user: maps.user,
+      bookMarkedMaps: [...maps.bookMarkedMaps],
+      addedMaps: [...temp],
+    });
     cookieHandler({
+      user: maps.user,
       bookMarkedMaps: [...maps.bookMarkedMaps],
       addedMaps: [...temp],
     });

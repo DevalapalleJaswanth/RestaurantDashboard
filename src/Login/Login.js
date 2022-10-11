@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { getUsers } from '../Services';
 import { useNavigate } from 'react-router-dom';
 import { MapContext } from '../Store';
-export default function Login() {
+export default function Login(props) {
   const [maps, setMaps] = useContext(MapContext);
   const navigate = useNavigate();
   const [user, setUser] = useState({
@@ -51,7 +51,8 @@ export default function Login() {
           addedMaps: maps.addedMaps,
           bookMarkedMaps: maps.bookMarkedMaps,
         });
-        navigate(`/${maps.user}/HomePage`);
+
+        navigate(`/HomePage/${user.name}`);
       } else {
         alert('Entered credentials were wrong');
       }

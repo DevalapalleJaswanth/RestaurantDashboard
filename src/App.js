@@ -6,11 +6,14 @@ import HomePage from './Home';
 import { MapProvider, MapContext } from './Store';
 import BookMarkPage from './BookMark';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+
 export default function App() {
   const [maps, setMaps] = useContext(MapContext);
+  //const [user, setUser] = useState('');
   useEffect(() => {
     getUsers();
   }, []);
+  console.log(maps, 'app');
   return (
     <div>
       <h1>Hello StackBlitz!</h1>
@@ -18,11 +21,8 @@ export default function App() {
       <Router>
         <Routes>
           <Route path="/" element={<LoginPage />} />
-          <Route path={`/${maps.user}/HomePage`} element={<HomePage />} />
-          <Route
-            path={`/${maps.user}/BookMarkPage`}
-            element={<BookMarkPage />}
-          />
+          <Route path={`/HomePage/:id`} element={<HomePage />} />
+          <Route path={`/BookMarkPage/:id`} element={<BookMarkPage />} />
         </Routes>
       </Router>
     </div>

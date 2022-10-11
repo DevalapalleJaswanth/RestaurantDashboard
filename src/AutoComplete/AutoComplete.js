@@ -45,10 +45,12 @@ export default function AutoComplete(props) {
       });
     if (temp.length == 0) {
       setMaps({
+        user: maps.user,
         bookMarkedMaps: [...maps.bookMarkedMaps],
         addedMaps: [...maps.addedMaps, value],
       });
       props.cookieHandler({
+        user: maps.user,
         bookMarkedMaps: [...maps.bookMarkedMaps],
         addedMaps: [...maps.addedMaps, value],
       });
