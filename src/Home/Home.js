@@ -3,7 +3,7 @@ import { getRestaurantsData } from '../Services';
 import AutoCompleteInput from '../AutoComplete';
 import { MapContext } from '../Store';
 import { useCookies } from 'react-cookie';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 export default function Home() {
   const [restaurant, setRestaurant] = useState('');
   const [maps, setMaps] = useContext(MapContext);
@@ -82,7 +82,10 @@ export default function Home() {
   };
   return (
     <div>
-      <div>Home</div>
+      <div>
+        <Link to={`/HomePage/${maps.user}`}>Home</Link>
+        <Link to={`/BookMarkPage/${maps.user}`}>BookMarks</Link>
+      </div>
       <div>
         <AutoCompleteInput cookieHandler={cookieHandler} />
         {maps.addedMaps &&
