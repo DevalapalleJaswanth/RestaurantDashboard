@@ -22,14 +22,14 @@ export default function App() {
         <div style={{ display: 'flex' }}>
           <>
             {maps.user && (
-              <>
+              <div>
                 <div>
                   <Link to={`/HomePage/${maps.user}`}>Home</Link>
                 </div>
                 <div>
                   <Link to={`/BookMarkPage/${maps.user}`}>BookMarks</Link>
                 </div>
-              </>
+              </div>
             )}
           </>
           <>
