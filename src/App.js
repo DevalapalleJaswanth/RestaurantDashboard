@@ -19,11 +19,27 @@ export default function App() {
       <h1>Hello StackBlitz!</h1>
       <p>Start editing to see some magic happen :)</p>
       <Router>
-        <Routes>
-          <Route path="/" element={<LoginPage />} />
-          <Route path={`/HomePage/:id`} element={<HomePage />} />
-          <Route path={`/BookMarkPage/:id`} element={<BookMarkPage />} />
-        </Routes>
+        <div style={{ display: 'flex' }}>
+          <>
+            {maps.user && (
+              <>
+                <div>
+                  <Link to={`/HomePage/${maps.user}`}>Home</Link>
+                </div>
+                <div>
+                  <Link to={`/BookMarkPage/${maps.user}`}>BookMarks</Link>
+                </div>
+              </>
+            )}
+          </>
+          <>
+            <Routes>
+              <Route path="/" element={<LoginPage />} />
+              <Route path={`/HomePage/:id`} element={<HomePage />} />
+              <Route path={`/BookMarkPage/:id`} element={<BookMarkPage />} />
+            </Routes>
+          </>
+        </div>
       </Router>
     </div>
   );

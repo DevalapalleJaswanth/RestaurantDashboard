@@ -83,10 +83,6 @@ export default function Home() {
   return (
     <div>
       <div>
-        <Link to={`/HomePage/${maps.user}`}>Home</Link>
-        <Link to={`/BookMarkPage/${maps.user}`}>BookMarks</Link>
-      </div>
-      <div>
         <AutoCompleteInput cookieHandler={cookieHandler} />
         {maps.addedMaps &&
           maps.addedMaps.map((value, i) => (
