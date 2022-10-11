@@ -23,19 +23,19 @@ export default function Home() {
       cookies[`${id}bookMarkedMaps`] &&
       setMaps({
         user: id,
-        addedMaps: [...cookies[`${id}addedMaps`].split('&')],
-        bookMarkedMaps: [...cookies[`${id}bookMarkedMaps`].split('&')],
+        addedMaps: [...cookies[`${id}addedMaps`].split('%')],
+        bookMarkedMaps: [...cookies[`${id}bookMarkedMaps`].split('%')],
       });
   }, [id]);
 
   const cookieHandler = (currmaps) => {
-    let c1 = currmaps && currmaps.addedMaps && currmaps.addedMaps.join('&');
+    let c1 = currmaps && currmaps.addedMaps && currmaps.addedMaps.join('%');
     let c2 =
-      currmaps && currmaps.bookMarkedMaps && currmaps.bookMarkedMaps.join('&');
-    setCookie(`${id}addedMaps`, c1, {
+      currmaps && currmaps.bookMarkedMaps && currmaps.bookMarkedMaps.join('%');
+    setCookie(`${currmaps.user}addedMaps`, c1, {
       path: `/`,
     });
-    setCookie(`${id}bookMarkedMaps`, c2, {
+    setCookie(`${currmaps.user}bookMarkedMaps`, c2, {
       path: `/`,
     });
   };
