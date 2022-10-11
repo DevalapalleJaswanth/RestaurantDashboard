@@ -2,40 +2,72 @@ import React, { useEffect, useState, useContext } from 'react';
 import { getRestaurantsData } from '../Services';
 import AutoCompleteInput from '../AutoComplete';
 import { MapContext } from '../Store';
+import { useCookies } from 'react-cookie';
 
 export default function Home() {
   const [restaurant, setRestaurant] = useState('');
-  const [maps, setMaps, bookMarkedMaps, setBookMarkedMaps] =
-    useContext(MapContext);
+  const [maps, setMaps] = useContext(MapContext);
+  const [cookies, setCookie] = useCookies(['user']);
   useEffect(() => {
-    getRestaurantsData('subway')
-      .then((restaurantData) => restaurantData.json())
-      .then((restaurantData) => {
-        console.log(restaurantData);
-        setRestaurant(restaurantData.records);
+    cookies.addedMaps &&
+      cookies.bookMarkedMaps &&
+      setMaps({
+        addedMaps: [...cookies.addedMaps.split('&')],
+        bookMarkedMaps: [...cookies.bookMarkedMaps.split('&')],
       });
   }, []);
 
+  const cookieHandler = (currmaps) => {
+    let c1 = currmaps && currmaps.addedMaps && currmaps.addedMaps.join('&');
+    let c2 =
+      currmaps && currmaps.bookMarkedMaps && currmaps.bookMarkedMaps.join('&');
+    setCookie('addedMaps', c1, {
+      path: '/',
+    });
+    setCookie('bookMarkedMaps', c2, {
+      path: '/',
+    });
+  };
+
   const addToBookmark = (value) => {
-    setBookMarkedMaps([...bookMarkedMaps, value]);
+    let temp =
+      maps &&
+      maps.addedMaps.filter((rest) => {
+        if (value !== rest) {
+          return rest;
+        }
+      });
+    setMaps({
+      addedMaps: [...temp],
+      bookMarkedMaps: [...maps.bookMarkedMaps, value],
+    });
+
+    cookieHandler({
+      addedMaps: [...temp],
+      bookMarkedMaps: [...maps.bookMarkedMaps, value],
+    });
   };
 
   const remove = (value) => {
     let temp =
       maps &&
-      maps.filter((rest) => {
+      maps.addedMaps.filter((rest) => {
         if (value !== rest) {
           return rest;
         }
       });
-    setMaps([...temp]);
+    setMaps({ bookMarkedMaps: [...maps.bookMarkedMaps], addedMaps: [...temp] });
+    cookieHandler({
+      bookMarkedMaps: [...maps.bookMarkedMaps],
+      addedMaps: [...temp],
+    });
   };
   return (
     <div>
       Home Page
-      <AutoCompleteInput />
-      {maps &&
-        maps.map((value, i) => (
+      <AutoCompleteInput cookieHandler={cookieHandler} />
+      {maps.addedMaps &&
+        maps.addedMaps.map((value, i) => (
           <div key={i}>
             <iframe
               width="600"

@@ -3,12 +3,13 @@ import React, { useState, createContext } from 'react';
 const MapContext = createContext();
 
 function MapProvider(props) {
-  const [maps, setMaps] = useState([]);
-  const [bookMarkedMaps, setBookMarkedMaps] = useState([]);
+  const [maps, setMaps] = useState({
+    addedMaps: [],
+    bookMarkedMaps: [],
+  });
+
   return (
-    <MapContext.Provider
-      value={[maps, setMaps, bookMarkedMaps, setBookMarkedMaps]}
-    >
+    <MapContext.Provider value={[maps, setMaps]}>
       {props.children}
     </MapContext.Provider>
   );

@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import { getRestaurantsData } from '../Services';
 import { MapContext } from '../Store';
-export default function AutoComplete() {
+
+export default function AutoComplete(props) {
   const [search, setSearch] = useState('');
   const [display, setDisplay] = useState(false);
   const [restaurants, setRestaurants] = useState([]);
@@ -34,6 +35,30 @@ export default function AutoComplete() {
     };
   }, []);
 
+  const addMaps = (value) => {
+    let temp =
+      maps &&
+      maps.addedMaps.filter((rest) => {
+        if (value === rest) {
+          return rest;
+        }
+      });
+    if (temp.length == 0) {
+      setMaps({
+        bookMarkedMaps: [...maps.bookMarkedMaps],
+        addedMaps: [...maps.addedMaps, value],
+      });
+      props.cookieHandler({
+        bookMarkedMaps: [...maps.bookMarkedMaps],
+        addedMaps: [...maps.addedMaps, value],
+      });
+    } else {
+      alert(`${value} map is already added`);
+    }
+    setSearch('');
+    setDisplay(false);
+  };
+
   return (
     <div ref={wrapperref}>
       <input
@@ -45,9 +70,7 @@ export default function AutoComplete() {
       />
       <button
         onClick={() => {
-          setMaps([...maps, search]);
-          setSearch('');
-          setDisplay(false);
+          addMaps(search);
         }}
       >
         Add

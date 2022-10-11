@@ -1,13 +1,14 @@
 import React, { useContext, useEffect } from 'react';
 import { MapContext } from '../Store';
 export default function BookMark() {
-  const [bookMarkedMaps, setBookMarkedMaps] = useContext(MapContext);
-
+  const [maps, setMaps] = useContext(MapContext);
+  console.log(maps.bookMarkedMaps, 'book');
   return (
     <div>
       BookMark Page
-      {bookMarkedMaps &&
-        bookMarkedMaps.map((value, i) => (
+      {maps &&
+        maps.bookMarkedMaps &&
+        maps.bookMarkedMaps.map((value, i) => (
           <div key={i}>
             <iframe
               width="600"
