@@ -7,7 +7,7 @@ import { useCookies } from 'react-cookie';
 export default function Home() {
   const [restaurant, setRestaurant] = useState('');
   const [maps, setMaps] = useContext(MapContext);
-  const [cookies, setCookie] = useCookies(['user']);
+  const [cookies, setCookie] = useCookies([`${maps.user}`]);
   useEffect(() => {
     cookies.addedMaps &&
       cookies.bookMarkedMaps &&
@@ -22,10 +22,10 @@ export default function Home() {
     let c2 =
       currmaps && currmaps.bookMarkedMaps && currmaps.bookMarkedMaps.join('&');
     setCookie('addedMaps', c1, {
-      path: '/',
+      path: `/${maps.user}`,
     });
     setCookie('bookMarkedMaps', c2, {
-      path: '/',
+      path: `/${maps.user}`,
     });
   };
 
@@ -64,29 +64,31 @@ export default function Home() {
   };
   return (
     <div>
-      Home Page
-      <AutoCompleteInput cookieHandler={cookieHandler} />
-      {maps.addedMaps &&
-        maps.addedMaps.map((value, i) => (
-          <div key={i}>
-            <iframe
-              width="600"
-              height="450"
-              src={
-                'https://datastudio.google.com/embed/reporting/430242fa-4162-4950-a984-824b3b355b3c/page/dQMwC?params={"ds2.name2":"' +
-                value +
-                '"}'
-              }
-              frameborder="0"
-              style={{ border: 0 }}
-              allowfullscreen
-            ></iframe>
-            <div>
-              <button onClick={() => addToBookmark(value)}>Bookmark</button>
-              <button onClick={() => remove(value)}>Remove</button>
+      <div>Home</div>
+      <div>
+        <AutoCompleteInput cookieHandler={cookieHandler} />
+        {maps.addedMaps &&
+          maps.addedMaps.map((value, i) => (
+            <div key={i}>
+              <iframe
+                width="600"
+                height="450"
+                src={
+                  'https://datastudio.google.com/embed/reporting/430242fa-4162-4950-a984-824b3b355b3c/page/dQMwC?params={"ds2.name2":"' +
+                  value +
+                  '"}'
+                }
+                frameborder="0"
+                style={{ border: 0 }}
+                allowfullscreen
+              ></iframe>
+              <div>
+                <button onClick={() => addToBookmark(value)}>Bookmark</button>
+                <button onClick={() => remove(value)}>Remove</button>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+      </div>
     </div>
   );
 }

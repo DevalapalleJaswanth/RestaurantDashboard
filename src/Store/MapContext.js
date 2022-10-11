@@ -4,6 +4,7 @@ const MapContext = createContext();
 
 function MapProvider(props) {
   const [maps, setMaps] = useState({
+    user: '',
     addedMaps: [],
     bookMarkedMaps: [],
   });

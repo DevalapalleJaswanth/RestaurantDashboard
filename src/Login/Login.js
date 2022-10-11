@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { getUsers } from '../Services';
-
+import { useNavigate } from 'react-router-dom';
+import { MapContext } from '../Store';
 export default function Login() {
+  const [maps, setMaps] = useContext(MapContext);
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     name: '',
     password: '',
@@ -42,7 +45,16 @@ export default function Login() {
             return record;
           }
         });
-      console.log(verification);
+      if (verification.length == 1) {
+        setMaps({
+          user: user.name,
+          addedMaps: maps.addedMaps,
+          bookMarkedMaps: maps.bookMarkedMaps,
+        });
+        navigate(`/${maps.user}/HomePage`);
+      } else {
+        alert('Entered credentials were wrong');
+      }
     }
   };
 
