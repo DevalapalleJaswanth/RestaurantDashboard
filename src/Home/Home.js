@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { getRestaurantsData } from '../Services';
+import AutoCompleteInput from '../AutoComplete';
+import { MapContext } from '../Store';
+
 export default function Home() {
   const [restaurant, setRestaurant] = useState('');
+  const [maps, setMaps] = useContext(MapContext);
   useEffect(() => {
     getRestaurantsData('subway')
       .then((restaurantData) => restaurantData.json())
@@ -10,10 +14,13 @@ export default function Home() {
         setRestaurant(restaurantData.records);
       });
   }, []);
+
+  console.log(maps, 'homePage');
   return (
     <div>
       Home Page
-      <iframe
+      <AutoCompleteInput />
+      {/* <iframe
         width="600"
         height="450"
         src={
@@ -24,7 +31,7 @@ export default function Home() {
         frameborder="0"
         style={{ border: 0 }}
         allowfullscreen
-      ></iframe>
+      ></iframe> */}
     </div>
   );
 }
