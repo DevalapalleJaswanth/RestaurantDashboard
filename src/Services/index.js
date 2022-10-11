@@ -1,2 +1,3 @@
 import { getUsers } from './LoginServices';
-export { getUsers };
+import { getRestaurantsData } from './RestaurantServices';
+export { getUsers, getRestaurantsData };
