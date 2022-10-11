@@ -19,8 +19,8 @@ export default function Home() {
         bookMarkedMaps: maps.bookMarkedMaps,
       });
 
-    cookies.addedMaps &&
-      cookies.bookMarkedMaps &&
+    cookies[`${id}addedMaps`] &&
+      cookies[`${id}bookMarkedMaps`] &&
       setMaps({
         user: id,
         addedMaps: [...cookies[`${id}addedMaps`].split('&')],
