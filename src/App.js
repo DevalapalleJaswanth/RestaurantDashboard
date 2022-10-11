@@ -4,6 +4,7 @@ import LoginPage from './Login';
 import { getUsers } from './Services';
 import HomePage from './Home';
 import { MapProvider } from './Store';
+import BookMarkPage from './BookMark';
 export default function App() {
   useEffect(() => {
     getUsers();
