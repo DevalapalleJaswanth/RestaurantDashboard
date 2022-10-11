@@ -3,6 +3,7 @@ import './style.css';
 import LoginPage from './Login';
 import { getUsers } from './Services';
 import HomePage from './Home';
+import { MapProvider } from './Store';
 export default function App() {
   useEffect(() => {
     getUsers();
@@ -11,8 +12,10 @@ export default function App() {
     <div>
       <h1>Hello StackBlitz!</h1>
       <p>Start editing to see some magic happen :)</p>
-      <LoginPage />
-      <HomePage />
+      <MapProvider>
+        <LoginPage />
+        <HomePage />
+      </MapProvider>
     </div>
   );
 }
