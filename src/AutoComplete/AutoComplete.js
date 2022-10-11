@@ -7,6 +7,7 @@ export default function AutoComplete() {
   const [restaurants, setRestaurants] = useState([]);
   const [maps, setMaps] = useContext(MapContext);
   const wrapperref = useRef(null);
+
   const handleChange = (e) => {
     setSearch(e.target.value);
     getRestaurantsData(e.target.value)
@@ -34,7 +35,7 @@ export default function AutoComplete() {
   }, []);
 
   return (
-    <div>
+    <div ref={wrapperref}>
       <input
         type="text"
         value={search}
@@ -51,7 +52,7 @@ export default function AutoComplete() {
       >
         Add
       </button>
-      <div innerRef={wrapperref}>
+      <div>
         {display &&
           restaurants &&
           restaurants.map((item, i) => (

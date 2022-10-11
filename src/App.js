@@ -16,7 +16,7 @@ export default function App() {
       <MapProvider>
         {/* <LoginPage /> */}
         <HomePage />
-        {/* <BookMarkPage /> */}
+        <BookMarkPage />
       </MapProvider>
     </div>
   );
