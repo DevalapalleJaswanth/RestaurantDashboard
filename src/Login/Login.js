@@ -59,7 +59,7 @@ export default function Login() {
     <div>
       <form onSubmit={(e) => handleSubmit(e)}>
         <div>
-          <label for="name">User Name:</label>
+          <label htmlFor="name">User Name:</label>
           <input
             type="text"
             name="name"
@@ -73,7 +73,7 @@ export default function Login() {
         </div>
 
         <div>
-          <label for="password">Password:</label>
+          <label htmlFor="password">Password:</label>
           <input
             type="password"
             name="password"
