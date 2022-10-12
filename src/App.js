@@ -21,15 +21,24 @@ export default function App() {
           <>
             {maps.user && (
               <div>
-                <div>
-                  <Link to={`/HomePage/${maps.user}`} className="navigation">
+                <div className="navigation">
+                  <Link
+                    to={`/HomePage/${maps.user}`}
+                    style={{
+                      color: 'white',
+                      textDecoration: 'none',
+                    }}
+                  >
                     Home
                   </Link>
                 </div>
-                <div>
+                <div className="navigation">
                   <Link
                     to={`/BookMarkPage/${maps.user}`}
-                    className="navigation"
+                    style={{
+                      color: 'white',
+                      textDecoration: 'none',
+                    }}
                   >
                     BookMarks
                   </Link>

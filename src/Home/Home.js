@@ -81,31 +81,38 @@ export default function Home() {
     });
   };
   return (
-    <div>
-      <div>
+    <div style={{ height: '100%', width: '100%' }}>
+      <div style={{ height: '100%', width: '100%' }}>
+        <br />
+
         <AutoCompleteInput cookieHandler={cookieHandler} />
-        {maps.addedMaps &&
-          maps.addedMaps.map((value, i) => (
-            <div key={i} className="map-box">
-              <div className="name-box">{value}</div>
-              <iframe
-                width="600"
-                height="450"
-                src={
-                  'https://datastudio.google.com/embed/reporting/430242fa-4162-4950-a984-824b3b355b3c/page/dQMwC?params={"ds2.name2":"' +
-                  value +
-                  '"}'
-                }
-                frameborder="0"
-                style={{ border: 0 }}
-                allowfullscreen
-              ></iframe>
-              <div className="button-box">
-                <button onClick={() => addToBookmark(value)}>Bookmark</button>
-                <button onClick={() => remove(value)}>Remove</button>
+        <br />
+        <div style={{ overflow: 'scroll', width: '100%', height: '100vh' }}>
+          {maps.addedMaps &&
+            maps.addedMaps.map((value, i) => (
+              <div key={i} style={{ margin: '15px' }}>
+                <div className="name-box">{value}</div>
+                <iframe
+                  width="100%"
+                  height="450px"
+                  src={
+                    'https://datastudio.google.com/embed/reporting/430242fa-4162-4950-a984-824b3b355b3c/page/dQMwC?params={"ds2.name2":"' +
+                    value +
+                    '"}'
+                  }
+                  frameborder="0"
+                  style={{ border: 0 }}
+                  allowfullscreen
+                  className="map-box"
+                ></iframe>
+                <div className="button-box">
+                  <button onClick={() => addToBookmark(value)}>Bookmark</button>
+                  &nbsp;&nbsp;
+                  <button onClick={() => remove(value)}>Remove</button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+        </div>
       </div>
     </div>
   );

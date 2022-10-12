@@ -25,14 +25,14 @@ export default function BookMark() {
       });
   }, [id]);
   return (
-    <div>
+    <div style={{ overflow: 'scroll', width: '100%', height: '100vh' }}>
       {maps &&
         maps.bookMarkedMaps &&
         maps.bookMarkedMaps.map((value, i) => (
-          <div key={i}>
-            <div>{value}</div>
+          <div key={i} style={{ margin: '15px' }}>
+            <div className="name-box">{value}</div>
             <iframe
-              width="600"
+              width="100%"
               height="450"
               src={
                 'https://datastudio.google.com/embed/reporting/430242fa-4162-4950-a984-824b3b355b3c/page/dQMwC?params={"ds2.name2":"' +
@@ -43,6 +43,7 @@ export default function BookMark() {
               style={{ border: 0 }}
               allowfullscreen
             ></iframe>
+            <div className="button-box">BookMarked</div>
           </div>
         ))}
     </div>

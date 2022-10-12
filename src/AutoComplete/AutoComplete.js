@@ -63,21 +63,25 @@ export default function AutoComplete(props) {
 
   return (
     <div ref={wrapperref}>
-      <input
-        type="text"
-        value={search}
-        onChange={(e) => {
-          handleChange(e);
-        }}
-      />
-      <button
-        onClick={() => {
-          addMaps(search);
-        }}
-      >
-        Add
-      </button>
-      <div>
+      <div className="display-center">
+        <input
+          type="text"
+          value={search}
+          onChange={(e) => {
+            handleChange(e);
+          }}
+          className="autocomplete-input"
+        />
+        <button
+          onClick={() => {
+            addMaps(search);
+          }}
+          className="add-button"
+        >
+          Add
+        </button>
+      </div>
+      <div className={display && restaurants && 'autocomplete-box'}>
         {display &&
           restaurants &&
           restaurants.map((item, i) => (
