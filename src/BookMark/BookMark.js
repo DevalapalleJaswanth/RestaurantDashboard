@@ -46,6 +46,15 @@ export default function BookMark() {
             <div className="button-box">BookMarked</div>
           </div>
         ))}
+      {maps && maps.bookMarkedMaps && maps.bookMarkedMaps.length < 1 ? (
+        <div style={{ color: 'gray' }}>
+          <br />
+          <br />
+          Empty,yet to Book Mark.
+        </div>
+      ) : (
+        ''
+      )}
     </div>
   );
 }

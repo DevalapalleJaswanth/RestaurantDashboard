@@ -71,6 +71,7 @@ export default function AutoComplete(props) {
             handleChange(e);
           }}
           className="autocomplete-input"
+          placeholder="Type to search"
         />
         <button
           onClick={() => {

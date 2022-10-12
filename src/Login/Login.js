@@ -62,7 +62,7 @@ export default function Login(props) {
 
   const handleChange = (e) => {
     if (e.target.value === '') {
-      setError({ ...error, [e.target.name]: `${e.target.name} is Required` });
+      setError({ ...error, [e.target.name]: `${e.target.name} is required` });
     } else {
       setError({ ...error, [e.target.name]: '' });
     }
@@ -91,9 +91,10 @@ export default function Login(props) {
               handleChange(e);
             }}
             className="input"
+            placeholder="username"
           />
-          <div className="error">{error && error.name}</div>
         </div>
+        <div className="error">{error && error.name}</div>
         <br />
         <div className="display-flex ">
           <div className="input-box display-center icon">
@@ -110,9 +111,10 @@ export default function Login(props) {
               handleChange(e);
             }}
             className="input"
+            placeholder="password"
           />
-          <div className="error">{error && error.password}</div>
         </div>
+        <div className="error">{error && error.password}</div>
         <br />
         <div>
           <button type="submit" className="button">
