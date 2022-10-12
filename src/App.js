@@ -9,7 +9,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 export default function App() {
   const [maps, setMaps] = useContext(MapContext);
-  //const [user, setUser] = useState('');
+  const [state, setState] = useState(true);
   useEffect(() => {
     getUsers();
   }, []);
@@ -21,24 +21,26 @@ export default function App() {
           <>
             {maps.user && (
               <div>
-                <div className="navigation">
+                <div className={state ? 'navigation' : 'not-active'}>
                   <Link
                     to={`/HomePage/${maps.user}`}
                     style={{
-                      color: 'white',
+                      color: state ? 'white' : 'rgba(23, 46, 247, 0.74)',
                       textDecoration: 'none',
                     }}
+                    onClick={() => setState(true)}
                   >
                     Home
                   </Link>
                 </div>
-                <div className="navigation">
+                <div className={state ? 'not-active' : 'navigation'}>
                   <Link
                     to={`/BookMarkPage/${maps.user}`}
                     style={{
-                      color: 'white',
+                      color: state ? 'rgba(23, 46, 247, 0.74)' : 'white',
                       textDecoration: 'none',
                     }}
+                    onClick={() => setState(false)}
                   >
                     BookMarks
                   </Link>

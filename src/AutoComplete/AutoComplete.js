@@ -62,7 +62,7 @@ export default function AutoComplete(props) {
   };
 
   return (
-    <div ref={wrapperref}>
+    <div ref={wrapperref} style={{ position: 'relative' }}>
       <div className="display-center">
         <input
           type="text"
@@ -91,6 +91,8 @@ export default function AutoComplete(props) {
                 setSearch(item.fields.Name);
                 setDisplay(false);
               }}
+              className="autocomplete-option"
+              tabIndex="0"
             >
               {item.fields.Name}
             </div>
