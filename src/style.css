@@ -1,5 +1,106 @@
 h1,
-p {
+p,
+div {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.map-box {
+  padding: 10px;
+  border: 1px solid grey;
+}
+
+.autocomplete-box {
+  border: 1px solid grey;
+  width: 300px;
+  height: 400px;
+  overflow: scroll;
+}
+
+.button-box {
+  border: 1px solid grey;
+  border-radius: 0 0 0.5rem 0.5rem;
+  box-shadow: 1px 3px 21px 10px rgba(176, 173, 173, 0.65) inset;
+  -webkit-box-shadow: 1px 3px 21px 10px rgba(176, 173, 173, 0.65) inset;
+  -moz-box-shadow: 1px 3px 21px 10px rgba(176, 173, 173, 0.65) inset;
+}
+
+.name-box {
+  border: 1px solid grey;
+  border-radius: 0.5rem 0.5rem 0 0;
+  box-shadow: 1px 3px 21px 10px rgba(176, 173, 173, 0.65) inset;
+  -webkit-box-shadow: 1px 3px 21px 10px rgba(176, 173, 173, 0.65) inset;
+  -moz-box-shadow: 1px 3px 21px 10px rgba(176, 173, 173, 0.65) inset;
+}
+
+.navigation {
+  text-decoration: none;
+  border-radius: 0.1rem;
+  border: 1px solid grey;
+  background-color: black;
+  color: white;
+  padding: 10px;
+  margin: 10px;
+}
+
+.login-box {
+  border: 1px solid rgba(128, 128, 128, 0.034);
+  border-radius: 0.5rem;
+  padding: 50px;
+  box-shadow: 1px 3px 21px 10px rgba(176, 173, 173, 0.65);
+  -webkit-box-shadow: 1px 3px 21px 10px rgba(176, 173, 173, 0.65);
+  -moz-box-shadow: 1px 3px 21px 10px rgba(176, 173, 173, 0.65);
+}
+
+.input-box {
+  border: 1px solid rgba(23, 46, 247, 0.74);
+  border-radius: 0.5rem 0 0 0.5rem;
+  height: 25px;
+  width: 25px;
+  padding: 1px;
+}
+
+.input {
+  border: 1px solid gray;
+  border-radius: 0 0.5rem 0.5rem 0;
+  height: 25px;
+  font-size: 15px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.display-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.display-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  border-radius: 0.5rem 0 0 0.5rem;
+  color: white;
+  background-color: rgba(23, 46, 247, 0.74);
+}
+
+.button {
+  color: white;
+  background-color: rgba(23, 46, 247, 0.74);
+  border-radius: 0.5rem;
+  border: 1px solid rgba(23, 46, 247, 0.74);
+  width: 100px;
+  height: 40px;
+}
+
+.stylepage {
+  height: 100vh;
+  width: 40%;
+  color: white;
+  background-color: rgba(23, 46, 247, 0.74);
+  font-size: 40px;
+  padding: 10px;
 }

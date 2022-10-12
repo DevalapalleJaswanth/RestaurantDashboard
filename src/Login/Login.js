@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { getUsers } from '../Services';
 import { useNavigate } from 'react-router-dom';
 import { MapContext } from '../Store';
+import { CgProfile, CgKey } from 'react-icons/cg';
 export default function Login(props) {
   const [maps, setMaps] = useContext(MapContext);
   const navigate = useNavigate();
@@ -69,10 +70,18 @@ export default function Login(props) {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
   return (
-    <div>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <div>
-          <label htmlFor="name">User Name:</label>
+    <div className="display-flex" style={{ height: '100%', width: '100%' }}>
+      <div className="stylepage display-flex" style={{ marginRight: '30px' }}>
+        Restaurant <br /> Maps
+      </div>
+
+      <form onSubmit={(e) => handleSubmit(e)} className="login-box">
+        <div className="display-flex">
+          <div className="input-box display-center icon">
+            <label htmlFor="name">
+              <CgProfile />
+            </label>
+          </div>
           <input
             type="text"
             name="name"
@@ -81,12 +90,17 @@ export default function Login(props) {
             onChange={(e) => {
               handleChange(e);
             }}
+            className="input"
           />
           <div className="error">{error && error.name}</div>
         </div>
-
-        <div>
-          <label htmlFor="password">Password:</label>
+        <br />
+        <div className="display-flex ">
+          <div className="input-box display-center icon">
+            <label htmlFor="password">
+              <CgKey />
+            </label>
+          </div>
           <input
             type="password"
             name="password"
@@ -95,12 +109,15 @@ export default function Login(props) {
             onChange={(e) => {
               handleChange(e);
             }}
+            className="input"
           />
           <div className="error">{error && error.password}</div>
         </div>
-
+        <br />
         <div>
-          <button type="submit">Submit</button>
+          <button type="submit" className="button">
+            Login
+          </button>
         </div>
       </form>
     </div>

@@ -16,18 +16,23 @@ export default function App() {
   console.log(maps, 'app');
   return (
     <div>
-      <h1>Hello StackBlitz!</h1>
-      <p>Start editing to see some magic happen :)</p>
       <Router>
         <div style={{ display: 'flex' }}>
           <>
             {maps.user && (
               <div>
                 <div>
-                  <Link to={`/HomePage/${maps.user}`}>Home</Link>
+                  <Link to={`/HomePage/${maps.user}`} className="navigation">
+                    Home
+                  </Link>
                 </div>
                 <div>
-                  <Link to={`/BookMarkPage/${maps.user}`}>BookMarks</Link>
+                  <Link
+                    to={`/BookMarkPage/${maps.user}`}
+                    className="navigation"
+                  >
+                    BookMarks
+                  </Link>
                 </div>
               </div>
             )}

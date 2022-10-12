@@ -86,7 +86,8 @@ export default function Home() {
         <AutoCompleteInput cookieHandler={cookieHandler} />
         {maps.addedMaps &&
           maps.addedMaps.map((value, i) => (
-            <div key={i}>
+            <div key={i} className="map-box">
+              <div className="name-box">{value}</div>
               <iframe
                 width="600"
                 height="450"
@@ -99,7 +100,7 @@ export default function Home() {
                 style={{ border: 0 }}
                 allowfullscreen
               ></iframe>
-              <div>
+              <div className="button-box">
                 <button onClick={() => addToBookmark(value)}>Bookmark</button>
                 <button onClick={() => remove(value)}>Remove</button>
               </div>

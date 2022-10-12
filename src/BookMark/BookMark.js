@@ -1,9 +1,11 @@
 import React, { useContext, useEffect } from 'react';
 import { MapContext } from '../Store';
 import { useParams } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 export default function BookMark() {
   const [maps, setMaps] = useContext(MapContext);
   const { id } = useParams();
+  const [cookies, setCookie] = useCookies([`${maps.user}`]);
   console.log(maps.bookMarkedMaps, 'book');
   useEffect(() => {
     console.log(id);
@@ -13,14 +15,22 @@ export default function BookMark() {
         addedMaps: maps.addedMaps,
         bookMarkedMaps: maps.bookMarkedMaps,
       });
+
+    cookies[`${id}addedMaps`] &&
+      cookies[`${id}bookMarkedMaps`] &&
+      setMaps({
+        user: id,
+        addedMaps: [...cookies[`${id}addedMaps`].split('%')],
+        bookMarkedMaps: [...cookies[`${id}bookMarkedMaps`].split('%')],
+      });
   }, [id]);
   return (
     <div>
-      BookMark Page
       {maps &&
         maps.bookMarkedMaps &&
         maps.bookMarkedMaps.map((value, i) => (
           <div key={i}>
+            <div>{value}</div>
             <iframe
               width="600"
               height="450"
